@@ -34,6 +34,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
+        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+         let homeView = storyBoard.instantiateViewController(withIdentifier: "homepageView")
+        let weatherVC = storyBoard.instantiateViewController(withIdentifier: "weatherView")
+         let user = UserDefaults.standard.object(forKey: "usersName") as? String
+        if((user) != nil){
+            self.window?.rootViewController = weatherVC
+        }else {
+            self.window?.rootViewController = homeView
+        }
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     }
 
